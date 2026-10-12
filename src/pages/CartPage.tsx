@@ -1,19 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Trash2, Minus, Plus, ShoppingBag, ArrowRight, Tag, Sparkles } from 'lucide-react';
+import { Trash2, Minus, Plus, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useStore } from '../store';
-import { useState } from 'react';
-import { GlassCard, Badge, Button } from '../components/ui';
+import { Badge } from '../components/ui';
 
 export function CartPage() {
-  const { cart, removeFromCart, updateCartQuantity, getCartTotal, appliedCoupon, applyCoupon, removeCoupon } = useStore();
-  const [couponCode, setCouponCode] = useState('');
-  const [couponError, setCouponError] = useState('');
+  const { cart, removeFromCart, updateCartQuantity, getCartTotal } = useStore();
   const totals = getCartTotal();
-
-  const handleApplyCoupon = () => {
-    if (applyCoupon(couponCode)) { setCouponError(''); setCouponCode(''); }
-    else setCouponError('Invalid coupon code');
-  };
 
   if (cart.length === 0) {
     return (
@@ -77,36 +69,13 @@ export function CartPage() {
           ))}
         </div>
 
-        {/* Order Summary - Glassmorphism */}
+        {/* Order Summary */}
         <div className="lg:col-span-1">
           <div className="glass rounded-2xl p-6 sticky top-24 shadow-premium">
             <h2 className="text-lg font-bold text-gray-900 mb-5">Order Summary</h2>
-            
-            {/* Coupon */}
-            <div className="mb-5">
-              {appliedCoupon ? (
-                <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl border border-green-100">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-green-600" />
-                    <span className="text-sm font-semibold text-green-700">{appliedCoupon} (-{useStore.getState().discount}%)</span>
-                  </div>
-                  <button onClick={removeCoupon} className="text-green-600 hover:text-green-700 text-xs font-medium">Remove</button>
-                </div>
-              ) : (
-                <div>
-                  <div className="flex gap-2">
-                    <input type="text" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} placeholder="Coupon code" className="flex-1 px-3 py-2.5 glass-input rounded-xl text-sm focus:outline-none" />
-                    <button onClick={handleApplyCoupon} className="px-4 py-2.5 bg-surface-900 text-white rounded-xl text-sm font-semibold hover:bg-surface-800 transition-smooth">Apply</button>
-                  </div>
-                  {couponError && <p className="text-xs text-red-500 mt-1.5">{couponError}</p>}
-                  <p className="text-[11px] text-gray-400 mt-1.5">Try: WELCOME10, SAVE20, PRINT15</p>
-                </div>
-              )}
-            </div>
 
-            <div className="space-y-3 text-sm border-t border-gray-100 pt-5">
+            <div className="space-y-3 text-sm">
               <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span className="font-semibold">${totals.subtotal.toFixed(2)}</span></div>
-              {totals.discount > 0 && <div className="flex justify-between text-green-600"><span>Discount</span><span className="font-semibold">-${totals.discount.toFixed(2)}</span></div>}
               <div className="flex justify-between"><span className="text-gray-500">Shipping</span><span className="font-semibold">{totals.shipping === 0 ? <span className="text-green-600">Free</span> : `$${totals.shipping.toFixed(2)}`}</span></div>
               <div className="flex justify-between"><span className="text-gray-500">Tax (est.)</span><span className="font-semibold">${totals.tax.toFixed(2)}</span></div>
               <div className="flex justify-between text-xl font-bold border-t border-gray-100 pt-4">
@@ -114,6 +83,12 @@ export function CartPage() {
                 <span className="gradient-text">${totals.total.toFixed(2)}</span>
               </div>
             </div>
+
+            {totals.shipping === 0 && (
+              <div className="mt-4 p-3 bg-green-50 border border-green-100 rounded-xl text-xs text-green-700 font-medium text-center">
+                ✓ You qualify for free shipping!
+              </div>
+            )}
 
             <Link to="/checkout" className="block w-full text-center bg-gradient-to-r from-brand-600 to-brand-700 text-white py-4 rounded-xl font-bold hover:from-brand-700 hover:to-brand-800 transition-smooth shadow-lg shadow-brand-600/20 mt-6">
               Proceed to Checkout

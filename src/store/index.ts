@@ -16,7 +16,7 @@ interface AppState {
   removeFromCart: (id: string) => void;
   updateCartQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
-  getCartTotal: () => { subtotal: number; shipping: number; tax: number; total: number; discount: number };
+  getCartTotal: () => { subtotal: number; shipping: number; tax: number; total: number };
 
   // Orders
   orders: Order[];
@@ -42,12 +42,6 @@ interface AppState {
   // Support
   tickets: SupportTicket[];
   addTicket: (ticket: SupportTicket) => void;
-
-  // Coupons
-  appliedCoupon: string | null;
-  discount: number;
-  applyCoupon: (code: string) => boolean;
-  removeCoupon: () => void;
 }
 
 export const useStore = create<AppState>()(
@@ -89,13 +83,12 @@ export const useStore = create<AppState>()(
       })),
       clearCart: () => set({ cart: [] }),
       getCartTotal: () => {
-        const { cart, appliedCoupon, discount } = get();
+        const { cart } = get();
         const subtotal = cart.reduce((sum, item) => sum + item.totalPrice, 0);
-        const discountAmount = appliedCoupon ? subtotal * (discount / 100) : 0;
         const shipping = subtotal > 75 ? 0 : 9.99;
-        const tax = (subtotal - discountAmount) * 0.08;
-        const total = subtotal - discountAmount + shipping + tax;
-        return { subtotal, shipping, tax, total, discount: discountAmount };
+        const tax = subtotal * 0.08;
+        const total = subtotal + shipping + tax;
+        return { subtotal, shipping, tax, total };
       },
 
       orders: [],
@@ -109,13 +102,13 @@ export const useStore = create<AppState>()(
           subtotal: totals.subtotal,
           shipping: totals.shipping,
           tax: totals.tax,
-          discount: totals.discount || 0,
+          discount: 0,
           total: totals.total,
           shippingAddress,
           createdAt: new Date().toISOString(),
           estimatedDelivery: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         };
-        set((state) => ({ orders: [order, ...state.orders], cart: [], appliedCoupon: null, discount: 0 }));
+        set((state) => ({ orders: [order, ...state.orders], cart: [] }));
         return order.id;
       },
 
@@ -145,19 +138,7 @@ export const useStore = create<AppState>()(
 
       tickets: [],
       addTicket: (ticket) => set((state) => ({ tickets: [ticket, ...state.tickets] })),
-
-      appliedCoupon: null,
-      discount: 0,
-      applyCoupon: (code) => {
-        const coupons: Record<string, number> = { 'WELCOME10': 10, 'SAVE20': 20, 'PRINT15': 15 };
-        if (coupons[code.toUpperCase()]) {
-          set({ appliedCoupon: code.toUpperCase(), discount: coupons[code.toUpperCase()] });
-          return true;
-        }
-        return false;
-      },
-      removeCoupon: () => set({ appliedCoupon: null, discount: 0 }),
     }),
-    { name: 'printcraft-store', partialize: (state) => ({ cart: state.cart, user: state.user, isAuthenticated: state.isAuthenticated, orders: state.orders, projects: state.projects, favorites: state.favorites, tickets: state.tickets, appliedCoupon: state.appliedCoupon, discount: state.discount }) }
+    { name: 'printcraft-store', partialize: (state) => ({ cart: state.cart, user: state.user, isAuthenticated: state.isAuthenticated, orders: state.orders, projects: state.projects, favorites: state.favorites, tickets: state.tickets }) }
   )
 );

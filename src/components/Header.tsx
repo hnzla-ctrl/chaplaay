@@ -64,9 +64,7 @@ export function Header() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-2 text-sm">
           <Sparkles className="w-4 h-4 text-accent-400" />
-          <span className="font-medium">Free shipping on orders over $75 — Use code</span>
-          <span className="font-bold bg-white/10 px-2 py-0.5 rounded-md border border-white/20">WELCOME10</span>
-          <span className="font-medium">for 10% off!</span>
+          <span className="font-medium">Free shipping on all orders over $75 — Premium quality, delivered fast.</span>
         </div>
       </motion.div>
 

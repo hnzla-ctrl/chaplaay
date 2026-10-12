@@ -47,7 +47,6 @@ export function SupportPage() {
       faqs: [
         { id: 'pay1', q: 'What payment methods do you accept?', a: 'We accept Visa, Mastercard, American Express, Discover, and PayPal. All payments are processed securely with 256-bit SSL encryption.' },
         { id: 'pay2', q: 'How do quantity discounts work?', a: 'The more you order, the less you pay per unit. Each product page shows the quantity break pricing table. Discounts are automatically applied when you reach a higher quantity tier.' },
-        { id: 'pay3', q: 'Can I use a coupon code?', a: 'Yes! Enter your coupon code in the cart page or during checkout. Only one coupon can be applied per order. Check our homepage for current promotions.' },
       ]
     },
     {

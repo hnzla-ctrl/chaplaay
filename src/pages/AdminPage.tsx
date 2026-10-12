@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BarChart3, Package, Users, ShoppingCart, FileText, Settings, Tag, MessageSquare, TrendingUp, DollarSign, Eye, Edit, Trash2, Plus, ChevronDown, Search } from 'lucide-react';
+import { BarChart3, Package, Users, ShoppingCart, FileText, Settings, MessageSquare, TrendingUp, DollarSign, Eye, Edit, Trash2, Plus, ChevronDown, Search } from 'lucide-react';
 import { useStore } from '../store';
 import { products, categories } from '../data';
 
@@ -26,7 +26,6 @@ export function AdminPage() {
     { id: 'products', label: 'Products', icon: Package },
     { id: 'customers', label: 'Customers', icon: Users },
     { id: 'templates', label: 'Templates', icon: FileText },
-    { id: 'promotions', label: 'Promotions', icon: Tag },
     { id: 'support', label: 'Support', icon: MessageSquare },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
@@ -303,49 +302,6 @@ export function AdminPage() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-          )}
-
-          {activeSection === 'promotions' && (
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-gray-900">Coupons & Promotions</h1>
-                <button className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg text-sm font-medium hover:bg-brand-700"><Plus className="w-4 h-4" /> Create Coupon</button>
-              </div>
-              <div className="bg-white rounded-xl border overflow-hidden">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="text-left px-4 py-3 font-medium text-gray-600">Code</th>
-                      <th className="text-left px-4 py-3 font-medium text-gray-600">Discount</th>
-                      <th className="text-left px-4 py-3 font-medium text-gray-600">Uses</th>
-                      <th className="text-left px-4 py-3 font-medium text-gray-600">Status</th>
-                      <th className="text-left px-4 py-3 font-medium text-gray-600">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { code: 'WELCOME10', discount: '10% off', uses: '234/∞', status: 'Active' },
-                      { code: 'SAVE20', discount: '20% off', uses: '56/100', status: 'Active' },
-                      { code: 'PRINT15', discount: '15% off', uses: '89/∞', status: 'Active' },
-                      { code: 'SUMMER25', discount: '25% off', uses: '200/200', status: 'Expired' },
-                    ].map((coupon, i) => (
-                      <tr key={i} className="border-t hover:bg-gray-50">
-                        <td className="px-4 py-3 font-mono font-medium">{coupon.code}</td>
-                        <td className="px-4 py-3">{coupon.discount}</td>
-                        <td className="px-4 py-3 text-gray-600">{coupon.uses}</td>
-                        <td className="px-4 py-3"><span className={`px-2 py-0.5 rounded-full text-xs ${coupon.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>{coupon.status}</span></td>
-                        <td className="px-4 py-3">
-                          <div className="flex gap-1">
-                            <button className="p-1.5 hover:bg-gray-100 rounded"><Edit className="w-3.5 h-3.5 text-gray-500" /></button>
-                            <button className="p-1.5 hover:bg-gray-100 rounded"><Trash2 className="w-3.5 h-3.5 text-red-400" /></button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
               </div>
             </div>
           )}

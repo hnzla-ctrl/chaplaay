@@ -508,8 +508,8 @@ export function HomePage() {
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal variant="scaleIn">
             <div className="glass-dark rounded-3xl p-10 sm:p-14">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Get 10% Off Your First Order</h2>
-              <p className="text-white/50 mb-8 max-w-md mx-auto">Subscribe for exclusive deals, design tips, and new product announcements.</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Stay in the Loop</h2>
+              <p className="text-white/50 mb-8 max-w-md mx-auto">Subscribe for design tips, new product announcements, and inspiration delivered to your inbox.</p>
               <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); alert('Thanks for subscribing!'); }}>
                 <input type="email" placeholder="Enter your email" required className="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-brand-400 transition-smooth" />
                 <motion.button 

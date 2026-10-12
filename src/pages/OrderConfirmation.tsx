@@ -73,7 +73,7 @@ export function OrderConfirmation() {
         </div>
         <div className="border-t border-gray-100 mt-4 pt-4 space-y-2 text-sm">
           <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span className="font-medium">${order.subtotal.toFixed(2)}</span></div>
-          {order.discount > 0 && <div className="flex justify-between text-green-600"><span>Discount</span><span>-${order.discount.toFixed(2)}</span></div>}
+
           <div className="flex justify-between"><span className="text-gray-500">Shipping</span><span className="font-medium">{order.shipping === 0 ? 'Free' : `$${order.shipping.toFixed(2)}`}</span></div>
           <div className="flex justify-between"><span className="text-gray-500">Tax</span><span className="font-medium">${order.tax.toFixed(2)}</span></div>
           <div className="flex justify-between text-lg font-bold pt-2 border-t border-gray-100">

@@ -231,7 +231,6 @@ export function CheckoutPage() {
             </div>
             <div className="space-y-2.5 text-sm border-t border-gray-100 pt-4">
               <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span className="font-semibold">${totals.subtotal.toFixed(2)}</span></div>
-              {totals.discount > 0 && <div className="flex justify-between text-green-600"><span>Discount</span><span className="font-semibold">-${totals.discount.toFixed(2)}</span></div>}
               <div className="flex justify-between"><span className="text-gray-500">Shipping</span><span className="font-semibold">{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span></div>
               <div className="flex justify-between"><span className="text-gray-500">Tax</span><span className="font-semibold">${totals.tax.toFixed(2)}</span></div>
               <div className="flex justify-between text-xl font-bold border-t border-gray-100 pt-3">
