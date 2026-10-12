@@ -90,11 +90,11 @@ export function SupportPage() {
         <p className="text-gray-600 max-w-2xl mx-auto">Find answers to common questions or contact our support team for personalized assistance.</p>
       </div>
 
-      {/* Search */}
+      {/* Search - Glassmorphism */}
       <div className="max-w-xl mx-auto mb-8">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for answers..." className="w-full pl-12 pr-4 py-3.5 border-2 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
+          <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for answers..." className="w-full pl-12 pr-4 py-3.5 glass-input rounded-xl text-lg focus:outline-none transition-smooth" />
         </div>
       </div>
 
@@ -120,7 +120,7 @@ export function SupportPage() {
               </h2>
               <div className="space-y-2">
                 {category.faqs.map(faq => (
-                  <details key={faq.id} className="group bg-white rounded-xl border overflow-hidden" open={expandedFaq === faq.id}>
+                  <details key={faq.id} className="group glass rounded-xl overflow-hidden" open={expandedFaq === faq.id}>
                     <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50" onClick={() => setExpandedFaq(expandedFaq === faq.id ? null : faq.id)}>
                       <span className="font-medium text-gray-900">{faq.q}</span>
                       <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${expandedFaq === faq.id ? 'rotate-180' : ''}`} />

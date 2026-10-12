@@ -330,9 +330,9 @@ export function EditorPage() {
   }, [objects, selectedId, canvasSize]);
 
   return (
-    <div className="h-[calc(100vh-120px)] flex flex-col bg-gray-100">
-      {/* Top Toolbar */}
-      <div className="bg-white border-b px-4 py-2 flex items-center justify-between shrink-0">
+    <div className="h-[calc(100vh-120px)] flex flex-col bg-gradient-to-br from-gray-50 via-gray-100 to-brand-50/30">
+      {/* Top Toolbar - Glassmorphism */}
+      <div className="glass border-b border-white/30 px-4 py-2.5 flex items-center justify-between shrink-0 shadow-sm">
         <div className="flex items-center gap-3">
           <input type="text" value={projectName} onChange={(e) => setProjectName(e.target.value)} className="text-sm font-medium border-0 focus:outline-none focus:ring-0 bg-transparent w-48" />
           {product && <span className="text-xs bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full">{product.name}</span>}
@@ -354,8 +354,8 @@ export function EditorPage() {
       </div>
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Left Toolbar */}
-        <div className="w-14 bg-white border-r flex flex-col items-center py-3 gap-1 shrink-0">
+        {/* Left Toolbar - Glassmorphism */}
+        <div className="w-14 glass border-r border-white/20 flex flex-col items-center py-3 gap-1 shrink-0">
           <button onClick={() => setActiveTool('select')} className={`p-2.5 rounded-lg ${activeTool === 'select' ? 'bg-brand-50 text-brand-600' : 'text-gray-600 hover:bg-gray-100'}`} title="Select"><Layers className="w-5 h-5" /></button>
           <button onClick={() => addObject('text')} className={`p-2.5 rounded-lg ${activeTool === 'text' ? 'bg-brand-50 text-brand-600' : 'text-gray-600 hover:bg-gray-100'}`} title="Add Text"><Type className="w-5 h-5" /></button>
           <button onClick={handleImageUpload} className="p-2.5 rounded-lg text-gray-600 hover:bg-gray-100" title="Upload Image"><Image className="w-5 h-5" /></button>
@@ -382,8 +382,8 @@ export function EditorPage() {
           </div>
         </div>
 
-        {/* Right Properties Panel */}
-        <div className="w-64 bg-white border-l overflow-y-auto shrink-0">
+        {/* Right Properties Panel - Glassmorphism */}
+        <div className="w-64 glass border-l border-white/20 overflow-y-auto shrink-0">
           {selectedObject ? (
             <div className="p-4 space-y-4">
               <h3 className="font-semibold text-gray-900 text-sm">Properties</h3>

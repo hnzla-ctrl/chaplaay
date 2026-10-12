@@ -16,7 +16,7 @@ export function AccountPage() {
   if (!isAuthenticated) {
     return (
       <div className="max-w-md mx-auto px-4 py-16">
-        <div className="bg-white rounded-2xl border p-8">
+        <div className="glass rounded-2xl p-8 shadow-premium">
           <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">{isRegister ? 'Create Account' : 'Sign In'}</h1>
           
           {isRegister ? (

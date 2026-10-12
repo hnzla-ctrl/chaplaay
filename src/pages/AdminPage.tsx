@@ -41,8 +41,8 @@ export function AdminPage() {
 
   return (
     <div className="flex min-h-[calc(100vh-120px)]">
-      {/* Sidebar */}
-      <aside className="w-64 bg-gray-900 text-white p-4 shrink-0 hidden lg:block">
+      {/* Sidebar - Glassmorphism Dark */}
+      <aside className="w-64 glass-dark text-white p-4 shrink-0 hidden lg:block">
         <div className="mb-6">
           <h2 className="text-lg font-bold">Admin Panel</h2>
           <p className="text-sm text-gray-400">PrintCraft Pro</p>
